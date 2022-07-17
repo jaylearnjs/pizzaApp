@@ -15,10 +15,6 @@ function App() {
         </Routes>
       </div>
     </Router>
-
-    // <div className="App">
-    //   <Pizza />
-    // </div>
   );
 }
 
