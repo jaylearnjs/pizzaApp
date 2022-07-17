@@ -6,3 +6,12 @@
     height: 100%;
     width: 101%;
 }
+
+
+.pizzSizeDiv{
+    display: flex;
+}
+
+.indPizSize{
+    display: flex;
+}

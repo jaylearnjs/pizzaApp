@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import "./custPizz.css";
+import Large from "../src/svgs/Large.png";
+import { ReactComponent as Medium } from "../src/svgs/Medium.svg";
+import { ReactComponent as Regular } from "../src/svgs/Regular.svg";
 
 const CustomizePizza = ({ currPiz }) => {
-  const [size,setSize]=useState("")
+  const [pizsize, setpizSize] = useState([]);
   useEffect(() => {
-    setSize(currPiz.crust[0].sizes);
-   
+    setpizSize(currPiz.crust[0].sizes);
   }, []);
-  var abcd = size;
-  debugger
+
   return (
     <div>
       <img
@@ -19,7 +20,25 @@ const CustomizePizza = ({ currPiz }) => {
       <div className="custMainDiv">
         {" "}
         <div>{currPiz.description}</div>
-        <div></div>
+        Select Size
+        <div className="pizzSizeDiv">
+          {pizsize.map((sizes) => {
+            let saparate = sizes.name.split(" ");
+            debugger;
+            return (
+              <div className="indPizSize">
+                <div>
+                  {/* <{...saparate[0]} /> */}
+                  <img src={Large} />
+                </div>
+                <div>
+                  <div>{saparate[0]}</div>
+                  <div>{saparate[1] + saparate[2]}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
