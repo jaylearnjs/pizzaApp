@@ -1,17 +1,27 @@
-.custMainDiv{
-    padding: 10px 50px
+.custMainDiv {
+  padding: 10px 50px;
 }
 
-.custImage{
-    height: 100%;
-    width: 101%;
+.custImage {
+  height: 100%;
+  width: 101%;
 }
 
-
-.pizzSizeDiv{
-    display: flex;
+.pizzSizeDiv {
+  display: flex;
+  place-content: space-around;
+  margin: 2%;
 }
 
-.indPizSize{
-    display: flex;
+.indPizSize {
+  display: flex;
+  width: 30%;
+  justify-content: space-evenly;
+  border: 1px solid black;
+  border-radius: 5%;
+  padding: 1%;
+}
+
+.pizsizeicon {
+  height: 65px;
 }
