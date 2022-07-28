@@ -21,12 +21,16 @@ const CustomizePizza = ({ currPiz }) => {
         {" "}
         <div>{currPiz.description}</div>
         {currPiz.crust.map((crust) => {
-          return <div>abcd</div>;
+          return (
+            <div className="mainCrustDiv">
+              <div>{crust.name}</div>
+              <div>225</div>
+            </div>
+          );
         })}
         Select Size
         <div className="pizzSizeDiv">
           {pizsize.map((sizes) => {
-            debugger;
             let saparate = sizes.name.split(" ");
             return (
               <div className="indPizSize">
@@ -44,8 +48,8 @@ const CustomizePizza = ({ currPiz }) => {
                   />
                 </div>
                 <div>
-                  <div>{saparate[0]}</div>
-                  <div>{saparate[1] + saparate[2]}</div>
+                  <div className="pizzasize">{saparate[0]}</div>
+                  <div className="pizzasize">{saparate[1] + saparate[2]}</div>
                 </div>
               </div>
             );

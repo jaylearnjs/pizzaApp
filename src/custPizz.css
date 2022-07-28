@@ -25,3 +25,11 @@
 .pizsizeicon {
   height: 65px;
 }
+
+.pizzasize {
+  font-size: 15px;
+}
+
+.mainCrustDiv {
+  border: 1px solid black;
+}
