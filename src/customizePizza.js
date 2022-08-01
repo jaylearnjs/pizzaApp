@@ -6,9 +6,11 @@ import Regular from "../src/svgs/Regular.png";
 
 const CustomizePizza = ({ currPiz }) => {
   const [pizsize, setpizSize] = useState([]);
+  const [currCurst, setcurrCurst] = useState([]);
 
   useEffect(() => {
-    setpizSize(currPiz.crust[0].sizes);
+    setpizSize(currPiz.crust);
+    setcurrCurst(currPiz.crust[0].sizes);
   }, []);
   return (
     <div>
@@ -20,9 +22,12 @@ const CustomizePizza = ({ currPiz }) => {
       <div className="custMainDiv">
         {" "}
         <div>{currPiz.description}</div>
-        {currPiz.crust.map((crust) => {
+        {pizsize.map((crust) => {
           return (
-            <div className="mainCrustDiv">
+            <div
+              className="mainCrustDiv"
+              onClick={() => setcurrCurst(crust.sizes)}
+            >
               <div>{crust.name}</div>
               <div>225</div>
             </div>
@@ -30,7 +35,7 @@ const CustomizePizza = ({ currPiz }) => {
         })}
         Select Size
         <div className="pizzSizeDiv">
-          {pizsize.map((sizes) => {
+          {currCurst.map((sizes) => {
             let saparate = sizes.name.split(" ");
             return (
               <div className="indPizSize">
