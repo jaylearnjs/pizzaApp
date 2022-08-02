@@ -7,55 +7,55 @@ import Regular from "../src/svgs/Regular.png";
 const CustomizePizza = ({ currPiz }) => {
   const [pizsize, setpizSize] = useState([]);
   const [currCurst, setcurrCurst] = useState([]);
-
+  const [pizzaPrize, setPizzaPrice] = useState(0);
   useEffect(() => {
     setpizSize(currPiz.crust);
     setcurrCurst(currPiz.crust[0].sizes);
   }, []);
 
-  const changePrice = (e, datas) => {
-    let currentcrust = pizsize.filter((abcd) => {
-      // let abcd = abcd.crustID;
-      debugger;
-
-      if (abcd.crustID === datas.sizeID) {
-        debugger;
-        return abcd;
-      }
-    });
+  const changePrice = (sizes) => {
+    console.log(
+      "🚀 ~ file: customizePizza.js ~ line 17 ~ changePrice ~ sizes",
+      sizes
+    );
+    setPizzaPrice(sizes.price);
   };
 
   return (
     <div>
       <img
         className="custImage"
-        src=""
-        // src="https://images.dominos.co.in/new_margherita_2502.jpg"
+        // src=""
+        src="https://images.dominos.co.in/new_margherita_2502.jpg"
         alt="Pizza"
       />
       <div className="custMainDiv">
         {" "}
         <div>{currPiz.description}</div>
-        {pizsize.map((crust) => {
+        {pizsize.map((crust, crustID) => {
+          console.log(
+            "🚀 ~ file: customizePizza.js ~ line 32 ~ {pizsize.map ~ crust",
+            crust
+          );
+
           return (
             <div
               className="mainCrustDiv"
               onClick={() => setcurrCurst(crust.sizes)}
             >
               <div>{crust.name}</div>
-              <div>{crust.sizes[0].price}</div>
+              <div>{pizzaPrize || crust.sizes[0].price}</div>
             </div>
           );
         })}
+      </div>
+      <div>
         Select Size
         <div className="pizzSizeDiv">
-          {currCurst.map((sizes) => {
+          {currCurst.map((sizes, sizeId) => {
             let saparate = sizes.name.split(" ");
             return (
-              <div
-                className="indPizSize"
-                onClick={(e) => changePrice(e, sizes)}
-              >
+              <div className="indPizSize" onClick={(e) => changePrice(sizes)}>
                 <div>
                   <img
                     className="pizsizeicon"
