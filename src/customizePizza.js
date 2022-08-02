@@ -12,11 +12,25 @@ const CustomizePizza = ({ currPiz }) => {
     setpizSize(currPiz.crust);
     setcurrCurst(currPiz.crust[0].sizes);
   }, []);
+
+  const changePrice = (e, datas) => {
+    let currentcrust = pizsize.filter((abcd) => {
+      // let abcd = abcd.crustID;
+      debugger;
+
+      if (abcd.crustID === datas.sizeID) {
+        debugger;
+        return abcd;
+      }
+    });
+  };
+
   return (
     <div>
       <img
         className="custImage"
-        src="https://images.dominos.co.in/new_margherita_2502.jpg"
+        src=""
+        // src="https://images.dominos.co.in/new_margherita_2502.jpg"
         alt="Pizza"
       />
       <div className="custMainDiv">
@@ -29,7 +43,7 @@ const CustomizePizza = ({ currPiz }) => {
               onClick={() => setcurrCurst(crust.sizes)}
             >
               <div>{crust.name}</div>
-              <div>225</div>
+              <div>{crust.sizes[0].price}</div>
             </div>
           );
         })}
@@ -38,7 +52,10 @@ const CustomizePizza = ({ currPiz }) => {
           {currCurst.map((sizes) => {
             let saparate = sizes.name.split(" ");
             return (
-              <div className="indPizSize">
+              <div
+                className="indPizSize"
+                onClick={(e) => changePrice(e, sizes)}
+              >
                 <div>
                   <img
                     className="pizsizeicon"
