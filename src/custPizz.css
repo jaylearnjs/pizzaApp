@@ -32,4 +32,10 @@
 
 .mainCrustDiv {
   border: 1px solid black;
+  border-radius: 5%;
+  margin: 2%;
+}
+
+.parentcrustdiv {
+  display: flex;
 }
