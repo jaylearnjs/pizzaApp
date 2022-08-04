@@ -40,7 +40,9 @@ const CustomizePizza = ({ currPiz }) => {
               >
                 <div>{crust.name}</div>
                 {/* <div>{pizzaPrize || crust.sizes[0].price}</div> */}
-                <div>{crust.sizes[selectedSize]?.price}</div>
+                <div className="crustPrice">  
+                  {crust.sizes[selectedSize]?.price}
+                </div>
               </div>
             );
           })}
@@ -50,6 +52,7 @@ const CustomizePizza = ({ currPiz }) => {
         Select Size
         <div className="pizzSizeDiv">
           {currCurst.map((sizes, sizeId) => {
+
             let saparate = sizes.name.split(" ");
             return (
               <div
