@@ -16,7 +16,7 @@
 .indPizSize {
   display: flex;
   width: 30%;
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
   border: 1px solid black;
   border-radius: 5%;
   padding: 1%;
@@ -31,17 +31,25 @@
 }
 
 .mainCrustDiv {
+  /* display: flex; */
   border: 1px solid black;
   border-radius: 5%;
   margin: 2%;
   position: relative;
+  justify-content: space-between;
+  /* flex-direction: column; */
+  padding: 2%;
 }
 
 .parentcrustdiv {
   display: flex;
+  overflow-x: auto;
 }
 
 .crustPrice {
-  position: absolute;
   bottom: 0;
 }
+
+/* .crustName {
+  width: 10vw;
+} */

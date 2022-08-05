@@ -61,8 +61,8 @@ const PizzaCard = ({ allpiz }) => {
         </div>
         <img
           className="homeImage"
-          // src=""
-          src="https://images.dominos.co.in/new_margherita_2502.jpg"
+          src=""
+          // src="https://images.dominos.co.in/new_margherita_2502.jpg"
           alt="Piz"
         />
       </div>

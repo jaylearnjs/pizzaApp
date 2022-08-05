@@ -24,8 +24,8 @@ const CustomizePizza = ({ currPiz }) => {
     <div>
       <img
         className="custImage"
-        // src=""
-        src="https://images.dominos.co.in/new_margherita_2502.jpg"
+        src=""
+        // src="https://images.dominos.co.in/new_margherita_2502.jpg"
         alt="Pizza"
       />
       <div className="custMainDiv">
@@ -38,9 +38,9 @@ const CustomizePizza = ({ currPiz }) => {
                 className="mainCrustDiv"
                 onClick={() => setcurrCurst(crust.sizes)}
               >
-                <div>{crust.name}</div>
+                <div className="crustName">{crust.name}</div>
                 {/* <div>{pizzaPrize || crust.sizes[0].price}</div> */}
-                <div className="crustPrice">  
+                <div className="crustPrice">
                   {crust.sizes[selectedSize]?.price}
                 </div>
               </div>
@@ -52,7 +52,6 @@ const CustomizePizza = ({ currPiz }) => {
         Select Size
         <div className="pizzSizeDiv">
           {currCurst.map((sizes, sizeId) => {
-
             let saparate = sizes.name.split(" ");
             return (
               <div
