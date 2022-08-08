@@ -21,7 +21,7 @@ const PizzaCard = ({ allpiz }) => {
   const handleCrustChange = (event, id) => {
     let crustId = event.target.value;
     let findcrustData = allpiz.crust.find(
-      (element) => element.crustID == crustId
+      (element) => element.crustID === crustId
     );
     setpizDesc(findcrustData.description);
     setcrustData(findcrustData.sizes);
@@ -29,7 +29,6 @@ const PizzaCard = ({ allpiz }) => {
   };
 
   const handleSizeChange = (event, id) => {
-    debugger;
     if (id) {
       let sizeonchange = event.target.value;
       let splitedprice = sizeonchange.split(")")[1];
@@ -61,8 +60,8 @@ const PizzaCard = ({ allpiz }) => {
         </div>
         <img
           className="homeImage"
-          src=""
-          // src="https://images.dominos.co.in/new_margherita_2502.jpg"
+          // src=""
+          src="https://images.dominos.co.in/new_margherita_2502.jpg"
           alt="Piz"
         />
       </div>

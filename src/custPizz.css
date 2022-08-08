@@ -52,3 +52,30 @@
 .crustName {
   width: 10vw;
 }
+
+.toppingsdiv {
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 2%;
+  margin: 2%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.toppingsMainDiv {
+  display: flex;
+  margin: 2%;
+  overflow-x: auto;
+}
+
+.toppName {
+  width: 10vw;
+}
+
+.footerDiv {
+  background-color: darkgreen;
+  height: 2.5vw;
+  position: sticky;
+  bottom: 0px;
+}

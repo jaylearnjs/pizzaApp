@@ -7,25 +7,28 @@ import Regular from "../src/svgs/Regular.png";
 const CustomizePizza = ({ currPiz }) => {
   const [pizsize, setpizSize] = useState([]);
   const [currCurst, setcurrCurst] = useState([]);
-  const [pizzaPrize, setPizzaPrice] = useState(0);
+  // const [pizzaPrize, setPizzaPrice] = useState(0);
   const [selectedSize, setselectedSize] = useState(0);
+  const [toppings, setToppings] = useState([]);
 
   useEffect(() => {
     setpizSize(currPiz.crust);
     setcurrCurst(currPiz.crust[0].sizes);
+    setToppings(currPiz.crust[0].sizes[0].toppings);
   }, []);
 
   const changePrice = (sizes, sizeId) => {
-    setPizzaPrice(sizes.price);
+    // setPizzaPrice(sizes.price);
     setselectedSize(sizeId);
+    setToppings(sizes.toppings);
   };
 
   return (
     <div>
       <img
         className="custImage"
-        src=""
-        // src="https://images.dominos.co.in/new_margherita_2502.jpg"
+        // src=""
+        src="https://images.dominos.co.in/new_margherita_2502.jpg"
         alt="Pizza"
       />
       <div className="custMainDiv">
@@ -80,6 +83,24 @@ const CustomizePizza = ({ currPiz }) => {
           })}
         </div>
       </div>
+
+      <div>
+        Select Toppings
+        <div className="toppingsMainDiv">
+          {toppings.map((topps) => {
+            return (
+              <div className="toppingsdiv">
+                <div className="toppName">{topps.name}</div>
+                <img src={topps.images.small.toppingImage} alt="Toppings" />
+
+                <div className="toppPrice">{topps.price}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div className="footerDiv">Fotter </div>
+     
     </div>
   );
 };
