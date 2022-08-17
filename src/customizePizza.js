@@ -10,6 +10,11 @@ const CustomizePizza = ({ currPiz }) => {
   // const [pizzaPrize, setPizzaPrice] = useState(0);
   const [selectedSize, setselectedSize] = useState(0);
   const [toppings, setToppings] = useState([]);
+  const [crustPrice, setcrustPrice] = useState(0);
+  const [sizePrice, setsizePrice] = useState(0);
+  const [toppingsPrice, settoppingsPrice] = useState(0);
+  const [toppData, settoppData] = useState([]);
+  const [finalPrice, setfinalPrice] = useState(0);
 
   useEffect(() => {
     setpizSize(currPiz.crust);
@@ -21,6 +26,21 @@ const CustomizePizza = ({ currPiz }) => {
     // setPizzaPrice(sizes.price);
     setselectedSize(sizeId);
     setToppings(sizes.toppings);
+  };
+
+  const changeCrust = (size) => {
+    setcurrCurst(size);
+    let crustndSize = size[selectedSize]?.price;
+    setcrustPrice(size[selectedSize]?.price);
+  };
+
+  const selectTopp = (toppsData) => {
+    let selectedToppings = toppsData;
+    let stateToppPrice = toppingsPrice;
+    let stateToppName = toppData;
+    settoppData(stateToppName.push(toppsData.name));
+    settoppingsPrice();
+    debugger;
   };
 
   return (
@@ -39,7 +59,11 @@ const CustomizePizza = ({ currPiz }) => {
             return (
               <div
                 className="mainCrustDiv"
-                onClick={() => setcurrCurst(crust.sizes)}
+                onClick={(e) => changeCrust(crust.sizes)}
+                // onClick={
+                //   (() => {setcurrCurst(crust.sizes),
+                //   setcrustPrice(crust.sizes[selectedSize]?.price)})
+                // }
               >
                 <div className="crustName">{crust.name}</div>
                 {/* <div>{pizzaPrize || crust.sizes[0].price}</div> */}
@@ -89,7 +113,7 @@ const CustomizePizza = ({ currPiz }) => {
         <div className="toppingsMainDiv">
           {toppings.map((topps) => {
             return (
-              <div className="toppingsdiv">
+              <div className="toppingsdiv" onClick={(e) => selectTopp(topps)}>
                 <div className="toppName">{topps.name}</div>
                 <img src={topps.images.small.toppingImage} alt="Toppings" />
 
@@ -99,8 +123,7 @@ const CustomizePizza = ({ currPiz }) => {
           })}
         </div>
       </div>
-      <div className="footerDiv">Fotter </div>
-     
+      <div className="footerDiv">Price : {crustPrice} </div>
     </div>
   );
 };
