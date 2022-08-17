@@ -28,7 +28,8 @@ const CustomizePizza = ({ currPiz }) => {
     setToppings(sizes.toppings);
   };
 
-  const changeCrust = (size) => {
+  const changeCrust = (size, id) => {
+    debugger;
     setcurrCurst(size);
     setcrustPrice(size[selectedSize]?.price);
   };
@@ -72,13 +73,15 @@ const CustomizePizza = ({ currPiz }) => {
             return (
               <div
                 className="mainCrustDiv"
-                onClick={(e) => changeCrust(crust.sizes)}
+                onClick={(e) => changeCrust(crust.sizes, crustID)}
                 // onClick={
                 //   (() => {setcurrCurst(crust.sizes),
                 //   setcrustPrice(crust.sizes[selectedSize]?.price)})
                 // }
               >
-                <div className="crustName">{crust.name}</div>
+                <div id={crustID} className="crustName">
+                  {crust.name}
+                </div>
                 {/* <div>{pizzaPrize || crust.sizes[0].price}</div> */}
                 <div className="crustPrice">
                   {crust.sizes[selectedSize]?.price}
