@@ -30,17 +30,30 @@ const CustomizePizza = ({ currPiz }) => {
 
   const changeCrust = (size) => {
     setcurrCurst(size);
-    let crustndSize = size[selectedSize]?.price;
     setcrustPrice(size[selectedSize]?.price);
   };
 
   const selectTopp = (toppsData) => {
-    let selectedToppings = toppsData;
-    let stateToppPrice = toppingsPrice;
     let stateToppName = toppData;
-    settoppData(stateToppName.push(toppsData.name));
-    settoppingsPrice();
-    debugger;
+    let checkTopp = toppData.find(
+      (singleTopp) => singleTopp === toppsData.name
+    );
+    // if (!checkTopp || stateToppName.length === 0) {
+    if (checkTopp === undefined) {
+      stateToppName.push(toppsData.name);
+
+      settoppData(stateToppName);
+      settoppingsPrice(toppingsPrice + toppsData.price);
+    } else {
+      const index = stateToppName.indexOf(toppsData.name);
+      stateToppName.splice(index, 1);
+      settoppData(stateToppName);
+      settoppingsPrice(toppingsPrice - toppsData.price);
+
+      // settoppingsPrice()
+    }
+
+    // settoppingsPrice();
   };
 
   return (
@@ -123,7 +136,7 @@ const CustomizePizza = ({ currPiz }) => {
           })}
         </div>
       </div>
-      <div className="footerDiv">Price : {crustPrice} </div>
+      <div className="footerDiv">Price : {crustPrice + toppingsPrice} </div>
     </div>
   );
 };
