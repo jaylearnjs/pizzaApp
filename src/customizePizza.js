@@ -15,6 +15,7 @@ const CustomizePizza = ({ currPiz }) => {
   const [toppingsPrice, settoppingsPrice] = useState(0);
   const [toppData, settoppData] = useState([]);
   const [finalPrice, setfinalPrice] = useState(0);
+  const [selected, setselected] = useState(0);
 
   useEffect(() => {
     setpizSize(currPiz.crust);
@@ -30,6 +31,7 @@ const CustomizePizza = ({ currPiz }) => {
 
   const changeCrust = (size, id) => {
     debugger;
+    setselected(id);
     setcurrCurst(size);
     setcrustPrice(size[selectedSize]?.price);
   };
@@ -72,6 +74,9 @@ const CustomizePizza = ({ currPiz }) => {
           {pizsize.map((crust, crustID) => {
             return (
               <div
+                style={{
+                  backgroundColor: selected === crustID ? "red" : "",
+                }}
                 className="mainCrustDiv"
                 onClick={(e) => changeCrust(crust.sizes, crustID)}
                 // onClick={
