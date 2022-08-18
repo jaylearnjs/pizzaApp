@@ -7,14 +7,11 @@ import Regular from "../src/svgs/Regular.png";
 const CustomizePizza = ({ currPiz }) => {
   const [pizsize, setpizSize] = useState([]);
   const [currCurst, setcurrCurst] = useState([]);
-  // const [pizzaPrize, setPizzaPrice] = useState(0);
   const [selectedSize, setselectedSize] = useState(0);
   const [toppings, setToppings] = useState([]);
   const [crustPrice, setcrustPrice] = useState(0);
-  const [sizePrice, setsizePrice] = useState(0);
   const [toppingsPrice, settoppingsPrice] = useState(0);
   const [toppData, settoppData] = useState([]);
-  const [finalPrice, setfinalPrice] = useState(0);
   const [selectedCrustBack, setselectedCrustBack] = useState(0);
   const [selectedSizeBack, setselectedSizeBack] = useState(0);
   const [selectedToppBack, setselectedToppBack] = useState([]);
@@ -23,7 +20,7 @@ const CustomizePizza = ({ currPiz }) => {
     setpizSize(currPiz.crust);
     setcurrCurst(currPiz.crust[0].sizes);
     setToppings(currPiz.crust[0].sizes[0].toppings);
-
+    setcrustPrice(currPiz.crust[0].sizes[0].price);
     let toppIntialBack = new Array(
       currPiz.crust[0].sizes[0].toppings.length
     ).fill("OFF");
@@ -31,7 +28,10 @@ const CustomizePizza = ({ currPiz }) => {
   }, []);
 
   const changePrice = (sizes, sizeId) => {
-    // setPizzaPrice(sizes.price);
+    debugger;
+    setcrustPrice(sizes.price);
+    // selectedCrustBack;
+
     setselectedSizeBack(sizeId);
     setselectedSize(sizeId);
     setToppings(sizes.toppings);
@@ -51,7 +51,6 @@ const CustomizePizza = ({ currPiz }) => {
       (singleTopp) => singleTopp === toppsData.name
     );
 
-    // if (!checkTopp || stateToppName.length === 0) {
     if (checkTopp === undefined) {
       stateToppName.push(toppsData.name);
 
@@ -64,10 +63,7 @@ const CustomizePizza = ({ currPiz }) => {
       settoppData(stateToppName);
       settoppingsPrice(toppingsPrice - toppsData.price);
       getToppArray[toppId] = "OFF";
-      // settoppingsPrice()
     }
-
-    // settoppingsPrice();
   };
 
   return (
@@ -83,28 +79,26 @@ const CustomizePizza = ({ currPiz }) => {
         <div>{currPiz.description}</div>
         <div className="parentcrustdiv">
           {pizsize.map((crust, crustID) => {
-            return (
-              <div
-                style={{
-                  backgroundColor:
-                    selectedCrustBack === crustID ? "#006dffd1" : "",
-                }}
-                className="mainCrustDiv"
-                onClick={(e) => changeCrust(crust.sizes, crustID)}
-                // onClick={
-                //   (() => {setcurrCurst(crust.sizes),
-                //   setcrustPrice(crust.sizes[selectedSize]?.price)})
-                // }
-              >
-                <div id={crustID} className="crustName">
-                  {crust.name}
+            let currSize = selectedSize;
+            if (crust.sizes[currSize]) {
+              return (
+                <div
+                  style={{
+                    backgroundColor:
+                      selectedCrustBack === crustID ? "#006dffd1" : "",
+                  }}
+                  className="mainCrustDiv"
+                  onClick={(e) => changeCrust(crust.sizes, crustID)}
+                >
+                  <div id={crustID} className="crustName">
+                    {crust.name}
+                  </div>
+                  <div className="crustPrice">
+                    {crust.sizes[selectedSize]?.price}
+                  </div>
                 </div>
-                {/* <div>{pizzaPrize || crust.sizes[0].price}</div> */}
-                <div className="crustPrice">
-                  {crust.sizes[selectedSize]?.price}
-                </div>
-              </div>
-            );
+              );
+            }
           })}
         </div>
       </div>
