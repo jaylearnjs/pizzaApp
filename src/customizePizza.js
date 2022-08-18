@@ -15,44 +15,56 @@ const CustomizePizza = ({ currPiz }) => {
   const [toppingsPrice, settoppingsPrice] = useState(0);
   const [toppData, settoppData] = useState([]);
   const [finalPrice, setfinalPrice] = useState(0);
-  const [selected, setselected] = useState(0);
+  const [selectedCrustBack, setselectedCrustBack] = useState(0);
+  const [selectedSizeBack, setselectedSizeBack] = useState(0);
+  const [selectedToppBack, setselectedToppBack] = useState([]);
 
   useEffect(() => {
     setpizSize(currPiz.crust);
     setcurrCurst(currPiz.crust[0].sizes);
     setToppings(currPiz.crust[0].sizes[0].toppings);
+
+    let toppIntialBack = new Array(
+      currPiz.crust[0].sizes[0].toppings.length
+    ).fill("OFF");
+    setselectedToppBack(toppIntialBack);
   }, []);
 
   const changePrice = (sizes, sizeId) => {
     // setPizzaPrice(sizes.price);
+    setselectedSizeBack(sizeId);
     setselectedSize(sizeId);
     setToppings(sizes.toppings);
   };
 
   const changeCrust = (size, id) => {
-    debugger;
-    setselected(id);
+    setselectedCrustBack(id);
     setcurrCurst(size);
     setcrustPrice(size[selectedSize]?.price);
   };
 
-  const selectTopp = (toppsData) => {
+  const selectTopp = (toppsData, toppId) => {
+    const getToppArray = selectedToppBack;
+
     let stateToppName = toppData;
     let checkTopp = toppData.find(
       (singleTopp) => singleTopp === toppsData.name
     );
+    debugger;
     // if (!checkTopp || stateToppName.length === 0) {
     if (checkTopp === undefined) {
       stateToppName.push(toppsData.name);
 
       settoppData(stateToppName);
       settoppingsPrice(toppingsPrice + toppsData.price);
+      getToppArray[toppId] = "ON";
+      debugger;
     } else {
       const index = stateToppName.indexOf(toppsData.name);
       stateToppName.splice(index, 1);
       settoppData(stateToppName);
       settoppingsPrice(toppingsPrice - toppsData.price);
-
+      getToppArray[toppId] = "OFF";
       // settoppingsPrice()
     }
 
@@ -75,7 +87,8 @@ const CustomizePizza = ({ currPiz }) => {
             return (
               <div
                 style={{
-                  backgroundColor: selected === crustID ? "red" : "",
+                  backgroundColor:
+                    selectedCrustBack === crustID ? "#006dffd1" : "",
                 }}
                 className="mainCrustDiv"
                 onClick={(e) => changeCrust(crust.sizes, crustID)}
@@ -103,6 +116,10 @@ const CustomizePizza = ({ currPiz }) => {
             let saparate = sizes.name.split(" ");
             return (
               <div
+                style={{
+                  backgroundColor:
+                    selectedSizeBack === sizeId ? "#006dffd1" : "",
+                }}
                 className="indPizSize"
                 onClick={(e) => changePrice(sizes, sizeId)}
               >
@@ -132,9 +149,16 @@ const CustomizePizza = ({ currPiz }) => {
       <div>
         Select Toppings
         <div className="toppingsMainDiv">
-          {toppings.map((topps) => {
+          {toppings.map((topps, toppId) => {
             return (
-              <div className="toppingsdiv" onClick={(e) => selectTopp(topps)}>
+              <div
+                style={{
+                  backgroundColor:
+                    selectedToppBack[toppId] === "ON" ? "#006dffd1" : "",
+                }}
+                className="toppingsdiv"
+                onClick={(e) => selectTopp(topps, toppId)}
+              >
                 <div className="toppName">{topps.name}</div>
                 <img src={topps.images.small.toppingImage} alt="Toppings" />
 
