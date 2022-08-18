@@ -23,14 +23,13 @@ const PizzaCard = ({ allpiz }) => {
     let findcrustData = allpiz.crust.find(
       (element) => element.crustID == crustId
     );
-    debugger;
+
     setpizDesc(findcrustData.description);
     setcrustData(findcrustData.sizes);
     handleSizeChange(findcrustData.sizes[0].price);
   };
 
   const handleSizeChange = (event, id) => {
-    debugger;
     if (id) {
       let sizeonchange = event.target.value;
       let splitedprice = sizeonchange.split(")")[1];

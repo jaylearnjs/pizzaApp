@@ -50,7 +50,7 @@ const CustomizePizza = ({ currPiz }) => {
     let checkTopp = toppData.find(
       (singleTopp) => singleTopp === toppsData.name
     );
-    debugger;
+
     // if (!checkTopp || stateToppName.length === 0) {
     if (checkTopp === undefined) {
       stateToppName.push(toppsData.name);
@@ -58,7 +58,6 @@ const CustomizePizza = ({ currPiz }) => {
       settoppData(stateToppName);
       settoppingsPrice(toppingsPrice + toppsData.price);
       getToppArray[toppId] = "ON";
-      debugger;
     } else {
       const index = stateToppName.indexOf(toppsData.name);
       stateToppName.splice(index, 1);
