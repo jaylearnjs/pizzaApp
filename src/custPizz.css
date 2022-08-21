@@ -49,6 +49,7 @@
 .crustPrice {
   bottom: 0;
 }
+
 .crustName {
   width: 10vw;
 }
@@ -73,11 +74,26 @@
   width: 10vw;
 }
 
-.footerDiv {
-  background-color: darkgreen;
+.footerMainDiv {
+  display: flex;
+  background-color: green;
+  justify-content: space-between;
+  color: whitesmoke;
+  align-items: center;
   height: 2.5vw;
-  position: sticky;
-  bottom: 0px;
+  padding: 0px 20px
+}
+
+.footerPrice {}
+
+
+
+.footerButtonDiv {
+  background-color: green;
+  border: 2px solid whitesmoke;
   color: white;
-  
+  padding: 6px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  height: fit-content;
 }

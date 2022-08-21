@@ -16,31 +16,40 @@ const CustomizePizza = ({ currPiz }) => {
   const [selectedSizeBack, setselectedSizeBack] = useState(0);
   const [selectedToppBack, setselectedToppBack] = useState([]);
 
+  const [selectedPizCrust, setselectedPizCrust] = useState("");
+  const [selectedPizSize, setselectedPizSize] = useState("");
+
   useEffect(() => {
-    setpizSize(currPiz.crust);
-    setcurrCurst(currPiz.crust[0].sizes);
-    setToppings(currPiz.crust[0].sizes[0].toppings);
-    setcrustPrice(currPiz.crust[0].sizes[0].price);
+    let intialPizData = currPiz.crust;
+    setpizSize(intialPizData);
+    setcurrCurst(intialPizData[0].sizes);
+    setToppings(intialPizData[0].sizes[0].toppings);
+    setcrustPrice(intialPizData[0].sizes[0].price);
+
+    setselectedPizCrust(intialPizData[0].name);
+    setselectedPizSize(intialPizData[0].sizes[0].name);
     let toppIntialBack = new Array(
-      currPiz.crust[0].sizes[0].toppings.length
+      intialPizData[0].sizes[0].toppings.length
     ).fill("OFF");
     setselectedToppBack(toppIntialBack);
   }, []);
 
   const changePrice = (sizes, sizeId) => {
-    debugger;
     setcrustPrice(sizes.price);
     // selectedCrustBack;
 
     setselectedSizeBack(sizeId);
     setselectedSize(sizeId);
     setToppings(sizes.toppings);
+    setselectedPizCrust(sizes.toppings.name);
   };
 
   const changeCrust = (size, id) => {
     setselectedCrustBack(id);
     setcurrCurst(size);
     setcrustPrice(size[selectedSize]?.price);
+    setselectedPizCrust(currPiz.crust[id].name);
+    setselectedPizSize(size[selectedSize]?.name);
   };
 
   const selectTopp = (toppsData, toppId) => {
@@ -64,6 +73,13 @@ const CustomizePizza = ({ currPiz }) => {
       settoppingsPrice(toppingsPrice - toppsData.price);
       getToppArray[toppId] = "OFF";
     }
+  };
+
+  const addDataToLocal = () => {
+    let pSize = selectedPizCrust;
+    let pCrust = selectedPizSize;
+    let pTopp = toppData;
+    debugger;
   };
 
   return (
@@ -161,7 +177,12 @@ const CustomizePizza = ({ currPiz }) => {
           })}
         </div>
       </div>
-      <div className="footerDiv">Price : {crustPrice + toppingsPrice} </div>
+      <div className="footerMainDiv">
+        <div className="footerPrice">Price : {crustPrice + toppingsPrice} </div>
+        <button className="footerButtonDiv" onClick={(e) => addDataToLocal()}>
+          Add To Cart
+        </button>
+      </div>
     </div>
   );
 };
