@@ -36,12 +36,10 @@ const CustomizePizza = ({ currPiz }) => {
 
   const changePrice = (sizes, sizeId) => {
     setcrustPrice(sizes.price);
-    // selectedCrustBack;
-
     setselectedSizeBack(sizeId);
     setselectedSize(sizeId);
     setToppings(sizes.toppings);
-    setselectedPizCrust(sizes.toppings.name);
+    setselectedPizSize(sizes.name);
   };
 
   const changeCrust = (size, id) => {
@@ -76,10 +74,16 @@ const CustomizePizza = ({ currPiz }) => {
   };
 
   const addDataToLocal = () => {
-    let pSize = selectedPizCrust;
-    let pCrust = selectedPizSize;
-    let pTopp = toppData;
-    debugger;
+    // let pSize = selectedPizCrust;
+    // let pCrust = selectedPizSize;
+    // let pTopp = toppData;
+    let fullCustData = {
+      name: currPiz.name,
+      size: selectedPizCrust,
+      crust: selectedPizSize,
+      toppings: toppData
+    };
+    localStorage.setItem("fullCustData3", JSON.stringify(fullCustData));
   };
 
   return (
@@ -101,7 +105,7 @@ const CustomizePizza = ({ currPiz }) => {
                 <div
                   style={{
                     backgroundColor:
-                      selectedCrustBack === crustID ? "#006dffd1" : "",
+                      selectedCrustBack === crustID ? "#006dffd1" : ""
                   }}
                   className="mainCrustDiv"
                   onClick={(e) => changeCrust(crust.sizes, crustID)}
@@ -127,7 +131,7 @@ const CustomizePizza = ({ currPiz }) => {
               <div
                 style={{
                   backgroundColor:
-                    selectedSizeBack === sizeId ? "#006dffd1" : "",
+                    selectedSizeBack === sizeId ? "#006dffd1" : ""
                 }}
                 className="indPizSize"
                 onClick={(e) => changePrice(sizes, sizeId)}
@@ -163,7 +167,7 @@ const CustomizePizza = ({ currPiz }) => {
               <div
                 style={{
                   backgroundColor:
-                    selectedToppBack[toppId] === "ON" ? "#006dffd1" : "",
+                    selectedToppBack[toppId] === "ON" ? "#006dffd1" : ""
                 }}
                 className="toppingsdiv"
                 onClick={(e) => selectTopp(topps, toppId)}

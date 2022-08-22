@@ -24,6 +24,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  width: 80%;
 }
 
 .imagediv {
@@ -84,4 +85,14 @@
 
 .custtag {
   margin: 0px !important;
+}
+
+.cartDiv {
+  border: 2px solid black;
+  height: 50vh;
+  width: 18%;
+  border-radius: 5px;
+  margin: 2.5%;
+  position: fixed;
+  right: 0;
 }
