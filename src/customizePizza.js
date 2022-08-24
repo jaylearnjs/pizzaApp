@@ -77,13 +77,22 @@ const CustomizePizza = ({ currPiz }) => {
     // let pSize = selectedPizCrust;
     // let pCrust = selectedPizSize;
     // let pTopp = toppData;
+    let lclStr = [];
     let fullCustData = {
       name: currPiz.name,
       size: selectedPizCrust,
       crust: selectedPizSize,
-      toppings: toppData
+      toppings: toppData,
     };
-    localStorage.setItem("fullCustData3", JSON.stringify(fullCustData));
+
+    const abcd = JSON.parse(localStorage.getItem("cartData"));
+    if (abcd == null) {
+      lclStr.push(fullCustData);
+      localStorage.setItem("cartData", JSON.stringify(lclStr));
+    } else {
+      lclStr.push(fullCustData);
+      localStorage.setItem("cartData", JSON.stringify(lclStr));
+    }
   };
 
   return (
@@ -105,7 +114,7 @@ const CustomizePizza = ({ currPiz }) => {
                 <div
                   style={{
                     backgroundColor:
-                      selectedCrustBack === crustID ? "#006dffd1" : ""
+                      selectedCrustBack === crustID ? "#006dffd1" : "",
                   }}
                   className="mainCrustDiv"
                   onClick={(e) => changeCrust(crust.sizes, crustID)}
@@ -131,7 +140,7 @@ const CustomizePizza = ({ currPiz }) => {
               <div
                 style={{
                   backgroundColor:
-                    selectedSizeBack === sizeId ? "#006dffd1" : ""
+                    selectedSizeBack === sizeId ? "#006dffd1" : "",
                 }}
                 className="indPizSize"
                 onClick={(e) => changePrice(sizes, sizeId)}
@@ -167,7 +176,7 @@ const CustomizePizza = ({ currPiz }) => {
               <div
                 style={{
                   backgroundColor:
-                    selectedToppBack[toppId] === "ON" ? "#006dffd1" : ""
+                    selectedToppBack[toppId] === "ON" ? "#006dffd1" : "",
                 }}
                 className="toppingsdiv"
                 onClick={(e) => selectTopp(topps, toppId)}

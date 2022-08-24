@@ -4,6 +4,7 @@ import "./pizza.css";
 import PizzaCard from "./pizzaCard";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import customizePizza from "./customizePizza";
+import Cart from "./cart";
 
 const Pizza = ({}) => {
   const [data, fetchdata] = useState([]);
@@ -24,8 +25,8 @@ const Pizza = ({}) => {
           <PizzaCard allpiz={allpiz} />
         ))}
       </div>
-
-      <div className="cartDiv">ABCDE</div>
+      <Cart />
+      {/* <div className="cartDiv">ABCDE</div> */}
     </>
   );
 };
