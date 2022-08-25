@@ -2,3 +2,43 @@
   border: 1px solid black;
   margin: 1%;
 }
+
+.cartDiv {
+  overflow-y: scroll;
+}
+
+.wholeItemDiv {
+  padding: 3%;
+  white-space: pre;
+}
+
+.custHeading {
+  font-weight: bold;
+}
+
+.pricenQty {
+  display: flex;
+  justify-content: space-between;
+  height: 32px;
+}
+
+.qty {
+  border: 2px double black;
+  padding: 20%;
+}
+
+.itemImg {
+  width: 30%
+}
+
+.pizNameSize {
+  width: 70%;
+}
+
+.imgName {
+  height: 150px;
+}
+
+.sizenCrust {
+  font-weight: bold;
+}

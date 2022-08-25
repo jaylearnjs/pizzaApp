@@ -24,7 +24,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  width: 80%;
+  width: 75%;
 }
 
 .imagediv {
@@ -90,7 +90,7 @@
 .cartDiv {
   border: 2px solid black;
   height: 50vh;
-  width: 18%;
+  width: 23%;
   border-radius: 5px;
   margin: 2.5%;
   position: fixed;
