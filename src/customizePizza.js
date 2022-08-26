@@ -5,7 +5,7 @@ import Medium from "../src/svgs/Medium.png";
 import Regular from "../src/svgs/Regular.png";
 import SlideDrawer from "./SlideDrawer";
 
-const CustomizePizza = ({ currPiz }) => {
+const CustomizePizza = ({ currPiz, cartData, close }) => {
   const [pizsize, setpizSize] = useState([]);
   const [currCurst, setcurrCurst] = useState([]);
   const [selectedSize, setselectedSize] = useState(0);
@@ -84,17 +84,20 @@ const CustomizePizza = ({ currPiz }) => {
       toppings: toppData,
       price: crustPrice + toppingsPrice,
       pizimage: "https://images.dominos.co.in/new_margherita_2502.jpg",
-      description: currPiz.description
+      description: currPiz.description,
     };
 
     const getStoredValue = JSON.parse(localStorage.getItem("cartData"));
     if (getStoredValue == null) {
       lclStr = [fullCustData];
       localStorage.setItem("cartData", JSON.stringify(lclStr));
+      cartData(lclStr);
     } else {
       lclStr = [...getStoredValue, fullCustData];
       localStorage.setItem("cartData", JSON.stringify(lclStr));
+      cartData(lclStr);
     }
+    close();
   };
 
   return (
@@ -116,7 +119,7 @@ const CustomizePizza = ({ currPiz }) => {
                 <div
                   style={{
                     backgroundColor:
-                      selectedCrustBack === crustID ? "#006dffd1" : ""
+                      selectedCrustBack === crustID ? "#006dffd1" : "",
                   }}
                   className="mainCrustDiv"
                   onClick={(e) => changeCrust(crust.sizes, crustID)}
@@ -142,7 +145,7 @@ const CustomizePizza = ({ currPiz }) => {
               <div
                 style={{
                   backgroundColor:
-                    selectedSizeBack === sizeId ? "#006dffd1" : ""
+                    selectedSizeBack === sizeId ? "#006dffd1" : "",
                 }}
                 className="indPizSize"
                 onClick={(e) => changePrice(sizes, sizeId)}
@@ -178,7 +181,7 @@ const CustomizePizza = ({ currPiz }) => {
               <div
                 style={{
                   backgroundColor:
-                    selectedToppBack[toppId] === "ON" ? "#006dffd1" : ""
+                    selectedToppBack[toppId] === "ON" ? "#006dffd1" : "",
                 }}
                 className="toppingsdiv"
                 onClick={(e) => selectTopp(topps, toppId)}

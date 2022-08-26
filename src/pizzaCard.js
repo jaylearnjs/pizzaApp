@@ -4,7 +4,7 @@ import SlideDrawer from "./SlideDrawer";
 import BackDrop from "./Backdrop";
 import "./custPizz.css";
 
-const PizzaCard = ({ allpiz }) => {
+const PizzaCard = ({ allpiz, cartData }) => {
   const [crustData, setcrustData] = useState([]);
   const [selectedprice, setselectedprice] = useState(0);
   const [pizDesc, setpizDesc] = useState("");
@@ -53,7 +53,7 @@ const PizzaCard = ({ allpiz }) => {
         <div className="displayprice">₹ {selectedprice}</div>
 
         <div className="customizeClass">
-          <SlideDrawer show={drawerOpen} pizzId={allpiz} />
+          <SlideDrawer cartData={cartData} close={() => setDrawerOpen(false)} show={drawerOpen} pizzId={allpiz} />
           {drawerOpen && <BackDrop closeDrawer={handleBackdropClick} />}
           <p className="custtag" onClick={handleOpenDrawerButton}>
             Customize

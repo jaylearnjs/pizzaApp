@@ -2,13 +2,17 @@ import { useEffect, useState } from "react";
 import "./pizza.css";
 import "./cart.css";
 
-const Cart = (props) => {
+const Cart = ({ sendCartData }) => {
   const [allOrder, setallOrder] = useState([]);
 
   useEffect(() => {
-    const abcd = JSON.parse(localStorage.getItem("cartData"));
-    setallOrder(abcd);
-  }, []);
+    debugger;
+    console.log(
+      "🚀 ~ file: cart.js ~ line 11 ~ useEffect ~ sendCartData",
+      sendCartData
+    );
+    setallOrder(sendCartData);
+  }, [sendCartData]);
 
   return (
     <>
