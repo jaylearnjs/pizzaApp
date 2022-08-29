@@ -3,7 +3,6 @@ import "./custPizz.css";
 import Large from "../src/svgs/Large.png";
 import Medium from "../src/svgs/Medium.png";
 import Regular from "../src/svgs/Regular.png";
-import SlideDrawer from "./SlideDrawer";
 
 const CustomizePizza = ({ currPiz, cartData, close }) => {
   const [pizsize, setpizSize] = useState([]);
@@ -19,7 +18,6 @@ const CustomizePizza = ({ currPiz, cartData, close }) => {
 
   const [selectedPizCrust, setselectedPizCrust] = useState("");
   const [selectedPizSize, setselectedPizSize] = useState("");
-  const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
     let intialPizData = currPiz.crust;
@@ -79,12 +77,12 @@ const CustomizePizza = ({ currPiz, cartData, close }) => {
     let lclStr = [];
     let fullCustData = {
       name: currPiz.name,
-      size: selectedPizCrust,
-      crust: selectedPizSize,
+      size: selectedPizSize,
+      crust: selectedPizCrust,
       toppings: toppData,
       price: crustPrice + toppingsPrice,
       pizimage: "https://images.dominos.co.in/new_margherita_2502.jpg",
-      description: currPiz.description,
+      description: currPiz.description
     };
 
     const getStoredValue = JSON.parse(localStorage.getItem("cartData"));
@@ -119,7 +117,7 @@ const CustomizePizza = ({ currPiz, cartData, close }) => {
                 <div
                   style={{
                     backgroundColor:
-                      selectedCrustBack === crustID ? "#006dffd1" : "",
+                      selectedCrustBack === crustID ? "#006dffd1" : ""
                   }}
                   className="mainCrustDiv"
                   onClick={(e) => changeCrust(crust.sizes, crustID)}
@@ -145,7 +143,7 @@ const CustomizePizza = ({ currPiz, cartData, close }) => {
               <div
                 style={{
                   backgroundColor:
-                    selectedSizeBack === sizeId ? "#006dffd1" : "",
+                    selectedSizeBack === sizeId ? "#006dffd1" : ""
                 }}
                 className="indPizSize"
                 onClick={(e) => changePrice(sizes, sizeId)}
@@ -181,7 +179,7 @@ const CustomizePizza = ({ currPiz, cartData, close }) => {
               <div
                 style={{
                   backgroundColor:
-                    selectedToppBack[toppId] === "ON" ? "#006dffd1" : "",
+                    selectedToppBack[toppId] === "ON" ? "#006dffd1" : ""
                 }}
                 className="toppingsdiv"
                 onClick={(e) => selectTopp(topps, toppId)}

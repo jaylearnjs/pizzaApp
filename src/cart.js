@@ -6,11 +6,6 @@ const Cart = ({ sendCartData }) => {
   const [allOrder, setallOrder] = useState([]);
 
   useEffect(() => {
-    debugger;
-    console.log(
-      "🚀 ~ file: cart.js ~ line 11 ~ useEffect ~ sendCartData",
-      sendCartData
-    );
     setallOrder(sendCartData);
   }, [sendCartData]);
 

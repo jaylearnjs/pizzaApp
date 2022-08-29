@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import SlideDrawer from "./SlideDrawer";
 import BackDrop from "./Backdrop";
 import "./custPizz.css";
@@ -9,8 +8,7 @@ const PizzaCard = ({ allpiz, cartData }) => {
   const [selectedprice, setselectedprice] = useState(0);
   const [pizDesc, setpizDesc] = useState("");
   const [drawerOpen, setDrawerOpen] = useState(false);
-
-  // const [initprice,setinitprice]=useState(0)
+  const [selectedCrust, setselectedCrust] = useState("");
 
   useEffect(() => {
     setcrustData(allpiz.crust[0].sizes);
@@ -24,12 +22,15 @@ const PizzaCard = ({ allpiz, cartData }) => {
       (element) => element.crustID == crustId
     );
 
+    setselectedCrust(findcrustData.name);
     setpizDesc(findcrustData.description);
     setcrustData(findcrustData.sizes);
     handleSizeChange(findcrustData.sizes[0].price);
+    debugger;
   };
 
   const handleSizeChange = (event, id) => {
+    debugger;
     if (id) {
       let sizeonchange = event.target.value;
       let splitedprice = sizeonchange.split(")")[1];
@@ -39,13 +40,38 @@ const PizzaCard = ({ allpiz, cartData }) => {
     }
   };
 
-  function handleOpenDrawerButton() {
-    setDrawerOpen(!drawerOpen);
-  }
+  // function handleOpenDrawerButton() {
+  //   setDrawerOpen(!drawerOpen);
+  // }
 
-  function handleBackdropClick() {
-    setDrawerOpen(false);
-  }
+  // function handleBackdropClick() {
+  //   setDrawerOpen(false);
+  // }
+
+  const addToCart = () => {
+    let lclStr = [];
+    let fullCustData = {
+      name: allpiz.name,
+      // size: selectedPizCrust,
+      crust: selectedCrust,
+      price: selectedprice,
+      pizimage: "https://images.dominos.co.in/new_margherita_2502.jpg",
+      description: allpiz.description
+    };
+    console.log(fullCustData);
+    debugger;
+
+    // const getStoredValue = JSON.parse(localStorage.getItem("cartData"));
+    // if (getStoredValue == null) {
+    //   lclStr = [fullCustData];
+    //   localStorage.setItem("cartData", JSON.stringify(lclStr));
+    //   cartData(lclStr);
+    // } else {
+    //   lclStr = [...getStoredValue, fullCustData];
+    //   localStorage.setItem("cartData", JSON.stringify(lclStr));
+    //   cartData(lclStr);
+    // }
+  };
 
   return (
     <div className="pizzaCard">
@@ -53,9 +79,14 @@ const PizzaCard = ({ allpiz, cartData }) => {
         <div className="displayprice">₹ {selectedprice}</div>
 
         <div className="customizeClass">
-          <SlideDrawer cartData={cartData} close={() => setDrawerOpen(false)} show={drawerOpen} pizzId={allpiz} />
-          {drawerOpen && <BackDrop closeDrawer={handleBackdropClick} />}
-          <p className="custtag" onClick={handleOpenDrawerButton}>
+          <SlideDrawer
+            cartData={cartData}
+            close={() => setDrawerOpen(false)}
+            show={drawerOpen}
+            pizzId={allpiz}
+          />
+          {drawerOpen && <BackDrop closeDrawer={() => setDrawerOpen(false)} />}
+          <p className="custtag" onClick={() => setDrawerOpen(!drawerOpen)}>
             Customize
           </p>
         </div>
@@ -90,7 +121,11 @@ const PizzaCard = ({ allpiz, cartData }) => {
           })}
         </select>
       </div>
-      <div className="buttonDiv"></div>
+      <div className="buttonOuter">
+        <div className="buttonDiv" onClick={(e) => addToCart()}>
+          ADD TO CART
+        </div>
+      </div>
     </div>
   );
 };

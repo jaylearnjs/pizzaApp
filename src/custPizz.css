@@ -81,12 +81,11 @@
   color: whitesmoke;
   align-items: center;
   height: 2.5vw;
-  padding: 0px 20px
+  padding: 0px 20px;
 }
 
-.footerPrice {}
-
-
+.footerPrice {
+}
 
 .footerButtonDiv {
   background-color: green;
@@ -96,4 +95,18 @@
   font-size: 16px;
   cursor: pointer;
   height: fit-content;
+}
+
+.buttonDiv {
+  border: 1px solid black;
+  max-width: fit-content;
+  margin: 2%;
+  padding: 1.5% 3%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buttonOuter {
+  display: flex;
+  place-content: flex-end;
 }
