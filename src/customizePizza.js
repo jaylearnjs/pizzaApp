@@ -74,16 +74,21 @@ const CustomizePizza = ({ currPiz, cartData, close }) => {
   };
 
   const addDataToLocal = () => {
+    let toppings = toppData;
+
     let lclStr = [];
     let fullCustData = {
       name: currPiz.name,
       size: selectedPizSize,
       crust: selectedPizCrust,
-      toppings: toppData,
+      // toppings: toppData,
       price: crustPrice + toppingsPrice,
       pizimage: "https://images.dominos.co.in/new_margherita_2502.jpg",
-      description: currPiz.description
+      description: currPiz.description,
     };
+    if (toppData.length > 0) {
+      fullCustData.toppings = toppData;
+    }
 
     const getStoredValue = JSON.parse(localStorage.getItem("cartData"));
     if (getStoredValue == null) {
@@ -117,7 +122,7 @@ const CustomizePizza = ({ currPiz, cartData, close }) => {
                 <div
                   style={{
                     backgroundColor:
-                      selectedCrustBack === crustID ? "#006dffd1" : ""
+                      selectedCrustBack === crustID ? "#006dffd1" : "",
                   }}
                   className="mainCrustDiv"
                   onClick={(e) => changeCrust(crust.sizes, crustID)}
@@ -143,7 +148,7 @@ const CustomizePizza = ({ currPiz, cartData, close }) => {
               <div
                 style={{
                   backgroundColor:
-                    selectedSizeBack === sizeId ? "#006dffd1" : ""
+                    selectedSizeBack === sizeId ? "#006dffd1" : "",
                 }}
                 className="indPizSize"
                 onClick={(e) => changePrice(sizes, sizeId)}
@@ -179,7 +184,7 @@ const CustomizePizza = ({ currPiz, cartData, close }) => {
               <div
                 style={{
                   backgroundColor:
-                    selectedToppBack[toppId] === "ON" ? "#006dffd1" : ""
+                    selectedToppBack[toppId] === "ON" ? "#006dffd1" : "",
                 }}
                 className="toppingsdiv"
                 onClick={(e) => selectTopp(topps, toppId)}

@@ -37,26 +37,22 @@ const Cart = ({ sendCartData }) => {
                   </div>
                   <div>₹ {indData.price}</div>
                 </div>
-                <div className="CustData">
-                  <div className="custHeading">Your Customisation</div>
 
-                  {indData.toppings.map((conCurTop) => {
-                    return (
-                      <>
-                        <span>{conCurTop}</span>
-                      </>
-                    );
-                  })}
-                </div>
-                {/* {" "}
-                <div>{indData.name}</div>
-                <div>{indData.size}</div>
-                <div>{indData.crust}</div>
-                <div>
-                  {indData.toppings?.map((topps) => {
-                    return <span> {topps} </span>;
-                  })}
-                </div> */}
+                {indData.toppings ? (
+                  <div className="CustData">
+                    <div className="custHeading">Your Customisation</div>
+
+                    {indData.toppings.map((conCurTop) => {
+                      return (
+                        <>
+                          <span>{conCurTop}</span>
+                        </>
+                      );
+                    })}
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             </>
           );

@@ -15,18 +15,10 @@ const Pizza = ({}) => {
   }, []);
 
   const addToCart = (cartData) => {
-    console.log(
-      "🚀 ~ file: pizza.js ~ line 18 ~ AddToCart ~ cartData",
-      cartData
-    );
+   
     setcartDatachld(cartData);
   };
 
-  // window.addEventListener("storage", () => {
-  //   // When local storage changes, dump the list to
-  //   // the console.
-  //   console.log(JSON.parse(window.localStorage.getItem("sampleList")));
-  // });
 
   return (
     <>

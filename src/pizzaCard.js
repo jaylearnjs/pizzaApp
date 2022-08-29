@@ -9,11 +9,14 @@ const PizzaCard = ({ allpiz, cartData }) => {
   const [pizDesc, setpizDesc] = useState("");
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedCrust, setselectedCrust] = useState("");
+  const [selectedSize, setselectedSize] = useState("");
 
   useEffect(() => {
     setcrustData(allpiz.crust[0].sizes);
     setpizDesc(allpiz.crust[0].description);
     setselectedprice(allpiz.crust[0].sizes[0].price);
+    setselectedCrust(allpiz.crust[0].name);
+    setselectedSize(allpiz.crust[0].sizes[0].name);
   }, []);
 
   const handleCrustChange = (event, id) => {
@@ -26,51 +29,41 @@ const PizzaCard = ({ allpiz, cartData }) => {
     setpizDesc(findcrustData.description);
     setcrustData(findcrustData.sizes);
     handleSizeChange(findcrustData.sizes[0].price);
-    debugger;
   };
 
   const handleSizeChange = (event, id) => {
-    debugger;
     if (id) {
       let sizeonchange = event.target.value;
       let splitedprice = sizeonchange.split(")")[1];
+      let splitedSizeName = sizeonchange.split(")")[0] + ")";
+      setselectedSize(splitedSizeName);
       setselectedprice(splitedprice);
     } else {
       setselectedprice(event);
     }
   };
 
-  // function handleOpenDrawerButton() {
-  //   setDrawerOpen(!drawerOpen);
-  // }
-
-  // function handleBackdropClick() {
-  //   setDrawerOpen(false);
-  // }
-
   const addToCart = () => {
     let lclStr = [];
     let fullCustData = {
       name: allpiz.name,
-      // size: selectedPizCrust,
+      size: selectedSize,
       crust: selectedCrust,
       price: selectedprice,
       pizimage: "https://images.dominos.co.in/new_margherita_2502.jpg",
-      description: allpiz.description
+      description: allpiz.description,
     };
-    console.log(fullCustData);
-    debugger;
 
-    // const getStoredValue = JSON.parse(localStorage.getItem("cartData"));
-    // if (getStoredValue == null) {
-    //   lclStr = [fullCustData];
-    //   localStorage.setItem("cartData", JSON.stringify(lclStr));
-    //   cartData(lclStr);
-    // } else {
-    //   lclStr = [...getStoredValue, fullCustData];
-    //   localStorage.setItem("cartData", JSON.stringify(lclStr));
-    //   cartData(lclStr);
-    // }
+    const getStoredValue = JSON.parse(localStorage.getItem("cartData"));
+    if (getStoredValue == null) {
+      lclStr = [fullCustData];
+      localStorage.setItem("cartData", JSON.stringify(lclStr));
+      cartData(lclStr);
+    } else {
+      lclStr = [...getStoredValue, fullCustData];
+      localStorage.setItem("cartData", JSON.stringify(lclStr));
+      cartData(lclStr);
+    }
   };
 
   return (
@@ -107,7 +100,6 @@ const PizzaCard = ({ allpiz, cartData }) => {
           {crustData.map((option) => {
             return (
               <option value={option.crustID}>
-                {/* {`option.name \n option.price`} */}
                 <p>{option.name}</p>
                 <br />
                 <p>{option.price}</p>
