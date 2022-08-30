@@ -9,13 +9,20 @@ const Cart = ({ sendCartData }) => {
     setallOrder(sendCartData);
   }, [sendCartData]);
 
+  const removeItem = (id) => {
+    const getStoredDataValue = JSON.parse(localStorage.getItem("cartData"));
+    getStoredDataValue.splice(id, 1);
+    localStorage.setItem("cartData", JSON.stringify(getStoredDataValue));
+    setallOrder(getStoredDataValue);
+  };
+
   return (
     <>
       <div className="cartDiv">
-        {allOrder.map((indData) => {
+        {allOrder.map((indData, id) => {
           return (
             <>
-              <div className="wholeItemDiv">
+              <div className="wholeItemDiv" key={id}>
                 <div className="imgName">
                   <div className="itemImg">
                     {/* <img src={indData.pizimage} /> */}
@@ -31,7 +38,9 @@ const Cart = ({ sendCartData }) => {
                 </div>
                 <div className="pricenQty">
                   <div>
-                    <span className="qty">-</span>
+                    <span className="qty" onClick={(e) => removeItem(id)}>
+                      -
+                    </span>
                     <span className="qty">1</span>
                     <span className="qty">+</span>
                   </div>
@@ -42,10 +51,14 @@ const Cart = ({ sendCartData }) => {
                   <div className="CustData">
                     <div className="custHeading">Your Customisation</div>
 
-                    {indData.toppings.map((conCurTop) => {
+                    {indData.toppings.map((conCurTop, id) => {
+                      let totalToppings = indData.toppings.length;
+                      let diffrentiateTopp =
+                        totalToppings > id + 1 ? conCurTop + ", " : conCurTop;
+
                       return (
                         <>
-                          <span>{conCurTop}</span>
+                          <span>{diffrentiateTopp}</span>
                         </>
                       );
                     })}

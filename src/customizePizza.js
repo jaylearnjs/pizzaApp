@@ -15,7 +15,6 @@ const CustomizePizza = ({ currPiz, cartData, close }) => {
   const [selectedCrustBack, setselectedCrustBack] = useState(0);
   const [selectedSizeBack, setselectedSizeBack] = useState(0);
   const [selectedToppBack, setselectedToppBack] = useState([]);
-
   const [selectedPizCrust, setselectedPizCrust] = useState("");
   const [selectedPizSize, setselectedPizSize] = useState("");
 
@@ -83,8 +82,8 @@ const CustomizePizza = ({ currPiz, cartData, close }) => {
       crust: selectedPizCrust,
       // toppings: toppData,
       price: crustPrice + toppingsPrice,
-      pizimage: "https://images.dominos.co.in/new_margherita_2502.jpg",
-      description: currPiz.description,
+      pizimage: currPiz.image,
+      description: currPiz.description
     };
     if (toppData.length > 0) {
       fullCustData.toppings = toppData;
@@ -108,7 +107,7 @@ const CustomizePizza = ({ currPiz, cartData, close }) => {
       <img
         className="custImage"
         // src=""
-        src="https://images.dominos.co.in/new_margherita_2502.jpg"
+        src={currPiz.image}
         alt="Pizza"
       />
       <div className="custMainDiv">
@@ -122,7 +121,7 @@ const CustomizePizza = ({ currPiz, cartData, close }) => {
                 <div
                   style={{
                     backgroundColor:
-                      selectedCrustBack === crustID ? "#006dffd1" : "",
+                      selectedCrustBack === crustID ? "#006dffd1" : ""
                   }}
                   className="mainCrustDiv"
                   onClick={(e) => changeCrust(crust.sizes, crustID)}
@@ -148,7 +147,7 @@ const CustomizePizza = ({ currPiz, cartData, close }) => {
               <div
                 style={{
                   backgroundColor:
-                    selectedSizeBack === sizeId ? "#006dffd1" : "",
+                    selectedSizeBack === sizeId ? "#006dffd1" : ""
                 }}
                 className="indPizSize"
                 onClick={(e) => changePrice(sizes, sizeId)}
@@ -184,7 +183,7 @@ const CustomizePizza = ({ currPiz, cartData, close }) => {
               <div
                 style={{
                   backgroundColor:
-                    selectedToppBack[toppId] === "ON" ? "#006dffd1" : "",
+                    selectedToppBack[toppId] === "ON" ? "#006dffd1" : ""
                 }}
                 className="toppingsdiv"
                 onClick={(e) => selectTopp(topps, toppId)}

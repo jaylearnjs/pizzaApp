@@ -50,8 +50,8 @@ const PizzaCard = ({ allpiz, cartData }) => {
       size: selectedSize,
       crust: selectedCrust,
       price: selectedprice,
-      pizimage: "https://images.dominos.co.in/new_margherita_2502.jpg",
-      description: allpiz.description,
+      pizimage: allpiz.image,
+      description: allpiz.description
     };
 
     const getStoredValue = JSON.parse(localStorage.getItem("cartData"));
@@ -86,36 +86,37 @@ const PizzaCard = ({ allpiz, cartData }) => {
         <img
           className="homeImage"
           // src=""
-          src="https://images.dominos.co.in/new_margherita_2502.jpg"
+          src={allpiz.image}
           alt="Piz"
         />
       </div>
-
-      <div className="titleDiv">
-        <h2>{allpiz.name}</h2>
-        <p>{pizDesc}</p>
-      </div>
-      <div className="dropdowndiv">
-        <select onClick={(e) => handleSizeChange(e, allpiz.id)}>
-          {crustData.map((option) => {
-            return (
-              <option value={option.crustID}>
-                <p>{option.name}</p>
-                <br />
-                <p>{option.price}</p>
-              </option>
-            );
-          })}
-        </select>
-        <select onChange={(e) => handleCrustChange(e, allpiz.id)}>
-          {allpiz.crust.map((option) => {
-            return <option value={option.crustID}>{option.name}</option>;
-          })}
-        </select>
-      </div>
-      <div className="buttonOuter">
-        <div className="buttonDiv" onClick={(e) => addToCart()}>
-          ADD TO CART
+      <div className="cardDataDiv">
+        <div className="titleDiv">
+          <h2>{allpiz.name}</h2>
+          <p>{pizDesc}</p>
+        </div>
+        <div className="dropdowndiv">
+          <select onClick={(e) => handleSizeChange(e, allpiz.id)}>
+            {crustData.map((option) => {
+              return (
+                <option value={option.crustID}>
+                  <p>{option.name}</p>
+                  <br />
+                  <p>{option.price}</p>
+                </option>
+              );
+            })}
+          </select>
+          <select onChange={(e) => handleCrustChange(e, allpiz.id)}>
+            {allpiz.crust.map((option) => {
+              return <option value={option.crustID}>{option.name}</option>;
+            })}
+          </select>
+        </div>
+        <div className="buttonOuter">
+          <div className="buttonDiv" onClick={(e) => addToCart()}>
+            ADD TO CART
+          </div>
         </div>
       </div>
     </div>
