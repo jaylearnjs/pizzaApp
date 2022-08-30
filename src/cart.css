@@ -9,7 +9,7 @@
 
 .wholeItemDiv {
   padding: 3%;
-  white-space: pre;
+  border-radius: 2%;
 }
 
 .custHeading {
@@ -20,6 +20,7 @@
   display: flex;
   justify-content: space-between;
   height: 32px;
+  padding: 3% 0px;
 }
 
 .qty {
@@ -28,7 +29,8 @@
 }
 
 .itemImg {
-  width: 30%
+  height: 70px;
+  width: 30%;
 }
 
 .pizNameSize {
@@ -36,7 +38,10 @@
 }
 
 .imgName {
-  height: 150px;
+  display: flex;
+  gap: 4%;
+  align-items: center;
+  padding-bottom: 8%;
 }
 
 .sizenCrust {

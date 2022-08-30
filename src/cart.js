@@ -24,11 +24,16 @@ const Cart = ({ sendCartData }) => {
             <>
               <div className="wholeItemDiv" key={id}>
                 <div className="imgName">
-                  <div className="itemImg">
-                    {/* <img src={indData.pizimage} /> */}
-                  </div>
+                  {/* <div className="itemImg">
+                    <img src={indData.pizimage} />
+                  </div> */}
+                  <img
+                    className="itemImg"
+                    src={indData.pizimage}
+                    alt="cartItem"
+                  />
                   <div className="pizNameSize">
-                    <h1>{indData.name}</h1>
+                    <div>{indData.name}</div>
                     <div>{indData.description}</div>
                     <div className="sizenCrust">
                       <div>{indData.size} | </div>
